@@ -8,7 +8,8 @@ add_library(glbasics STATIC
         glad.c
         glinclude.h
         init.cpp
-        glbasics.h)
+        glbasics.h
+        keys.h)
 find_package(glfw3 REQUIRED)
 target_link_libraries(glbasics glfw)
 

@@ -4,6 +4,7 @@
 
 #include "Display.h"
 #include "glinclude.h"
+#include "keys.h"
 #include <iostream>
 
 void framebufferSizeCallback(GLFWwindow *window, int width, int height) {
@@ -18,10 +19,23 @@ Display::Display(int pWidth, int pHeight, const char *title) : width{pWidth}, he
         exit(EXIT_FAILURE);
     }
     glfwMakeContextCurrent(window);
+
+    if (!gladInitialised) {
+        gladInitialised = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+        if (!gladInitialised) {
+            std::cerr << "Failed to initialise GLAD" << std::endl;
+            glfwTerminate();
+            exit(EXIT_FAILURE);
+        }
+    }
 }
 
 void Display::close() {
-    glfwWindowShouldClose(window);
+    glfwSetWindowShouldClose(window, true);
+}
+
+bool Display::isOpen() {
+    return !glfwWindowShouldClose(window);
 }
 
 void Display::setBackground(GLfloat r, GLfloat g, GLfloat b) {
@@ -36,4 +50,8 @@ void Display::update() {
 
     glClearColor(background[0], background[1], background[2], 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+}
+
+bool Display::keyPressed(Key target) {
+    return glfwGetKey(window, static_cast<int>(target));
 }

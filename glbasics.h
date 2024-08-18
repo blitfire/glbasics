@@ -6,6 +6,7 @@
 #define GLBASICS_GLBASICS_H
 
 #include "init.h"
+#include "keys.h"
 #include "Display.h"
 
 #endif //GLBASICS_GLBASICS_H
