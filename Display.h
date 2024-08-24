@@ -7,6 +7,7 @@
 
 #include "glinclude.h"
 #include "keys.h"
+#include <array>
 
 void framebufferSizeCallback(GLFWwindow *window, int width, int height);
 
@@ -15,17 +16,19 @@ private:
     int width, height;
     GLFWwindow *window;
 
-    GLfloat background[3] = {0.0f, 0.0f, 0.0f};
-
     static inline bool gladInitialised {false};
 
 public:
     Display(int width, int height, const char *title);
     void close();
-    bool isOpen();
-    void setBackground(GLfloat r, GLfloat g, GLfloat b);
+    [[nodiscard]] bool isOpen() const;
+    static void fill(const std::array<GLfloat, 3> &colour);
     void update();
-    bool keyPressed(Key target);
+    [[nodiscard]] bool keyPressed(Key target) const;
+    void disableCursor();
+    void enableCursor();
+
+    static void framebufferSizeCallback(GLFWwindow *window, int width, int height);
 };
 
 

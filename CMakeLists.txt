@@ -9,7 +9,13 @@ add_library(glbasics STATIC
         glinclude.h
         init.cpp
         glbasics.h
-        keys.h)
+        keys.h
+        Shader.cpp
+        Point.cpp
+        GlobalState.cpp
+        GlobalState.h
+        Scene.cpp
+        Scene.h)
 find_package(glfw3 REQUIRED)
 target_link_libraries(glbasics glfw)
 

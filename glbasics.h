@@ -8,5 +8,6 @@
 #include "init.h"
 #include "keys.h"
 #include "Display.h"
+#include "Point.h"
 
 #endif //GLBASICS_GLBASICS_H

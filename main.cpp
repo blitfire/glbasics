@@ -11,7 +11,7 @@ int main() {
     screen.setBackground(1.0f, 0.0f, 0.3f);
 
     while (screen.isOpen()) {
-        if (screen.keyPressed(Key::escape)) {
+        if (screen.keyPressed(Key::ESCAPE)) {
             std::cout << "Screen closed." << std::endl;
             screen.close();
         }
