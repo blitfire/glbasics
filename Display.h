@@ -16,6 +16,9 @@ private:
     int width, height;
     GLFWwindow *window;
 
+    double lastFrame {};
+    double deltaTime {};
+
     static inline bool gladInitialised {false};
 
 public:
@@ -27,6 +30,8 @@ public:
     [[nodiscard]] bool keyPressed(Key target) const;
     void disableCursor();
     void enableCursor();
+
+    [[nodiscard]] double getDeltaTime() const { return deltaTime; }
 
     static void framebufferSizeCallback(GLFWwindow *window, int width, int height);
 };

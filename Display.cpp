@@ -16,7 +16,6 @@ Display::Display(int pWidth, int pHeight, const char *title) : width{pWidth}, he
     window = glfwCreateWindow(width, height, title, nullptr, nullptr);
     if (window == nullptr) {
         std::cerr << "Failed to create GLFW window." << std::endl;
-        glfwTerminate();
         exit(EXIT_FAILURE);
     }
     glfwMakeContextCurrent(window);
@@ -25,7 +24,6 @@ Display::Display(int pWidth, int pHeight, const char *title) : width{pWidth}, he
         gladInitialised = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
         if (!gladInitialised) {
             std::cerr << "Failed to initialise GLAD" << std::endl;
-            glfwTerminate();
             exit(EXIT_FAILURE);
         }
     }
@@ -35,6 +33,7 @@ Display::Display(int pWidth, int pHeight, const char *title) : width{pWidth}, he
 
 void Display::close() {
     glfwSetWindowShouldClose(window, true);
+    glfwMakeContextCurrent(nullptr);
 }
 
 bool Display::isOpen() const {
@@ -42,6 +41,10 @@ bool Display::isOpen() const {
 }
 
 void Display::update() {
+    double currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
+
     glfwSwapBuffers(window);
     glfwPollEvents();
 }

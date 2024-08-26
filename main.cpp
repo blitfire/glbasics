@@ -8,7 +8,7 @@
 int main() {
     init();
     Display screen {300, 400, "Test"};
-    screen.setBackground(1.0f, 0.0f, 0.3f);
+//    screen.setBackground(1.0f, 0.0f, 0.3f);
 
     while (screen.isOpen()) {
         if (screen.keyPressed(Key::ESCAPE)) {

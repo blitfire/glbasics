@@ -15,7 +15,11 @@ add_library(glbasics STATIC
         GlobalState.cpp
         GlobalState.h
         Scene.cpp
-        Scene.h)
+        Scene.h
+        Camera.cpp
+        Camera.h
+        utils.cpp
+        utils.h)
 find_package(glfw3 REQUIRED)
 target_link_libraries(glbasics glfw)
 
